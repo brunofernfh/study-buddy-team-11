@@ -6,10 +6,10 @@ Requirements Engineering – Ferdinand Porsche FernFH
 
 ## Team
 
-* Name 1
-* Name 2
-* Name 3
-* Name 4
+* Abdalla Ziad
+* Dragic Jason Mark
+* Götterer Bruno
+* Singh Navdeep
 
 ## Projekt
 
