@@ -33,3 +33,5 @@ Dieses Repository dokumentiert den Requirements-Engineering-Prozess des Projekts
 * `user-stories/` – User Stories
 * `decisions/` – Getroffene Entscheidungen und Begründungen
 * `reviews/` – Reviews und Feedback
+
+Test-Commit von Navdeep
