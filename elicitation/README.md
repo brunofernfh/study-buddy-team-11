@@ -6,7 +6,8 @@ Planung der ersten Elicitation-Runde für den Study Buddy. Ziel ist **Problemver
 |---|---|
 | [01-stakeholder-auswahl.md](01-stakeholder-auswahl.md) | Schritt 1 – Stakeholder*innen, Relevanz, benötigte Informationen |
 | [02-erkenntnisziele.md](02-erkenntnisziele.md) | Schritt 2 – Erkenntnisziele je Stakeholder*innengruppe |
-| [03-elicitation-techniken.md](03-elicitation-techniken.md) | Schritt 3 – gewählte Techniken und Begründung der Methodenwahl |
+| [03-elicitation-techniken.md](03-elicitation-techniken.md) | Schritt 3 – gewählte Elicitation-Techniken und Ablauf |
+| [03b-begruendung-methodenwahl.md](03b-begruendung-methodenwahl.md) | Schritt 3 – Begründung der Methodenwahl |
 | [04-interviewleitfaden-studierende.md](04-interviewleitfaden-studierende.md) | Schritt 4 – Interviewleitfaden (10 Fragen) inkl. kritischer Prüfung |
 | [05-annahmen.md](05-annahmen.md) | Identifizierte Annahmen (ASSUMPTION-001 – 007) |
 | [06-offene-fragen.md](06-offene-fragen.md) | Offene Fragen (QUESTION-001 – 010) |
