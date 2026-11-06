@@ -10,7 +10,7 @@ Planung der ersten Elicitation-Runde für den Study Buddy. Ziel ist **Problemver
 | [03b-begruendung-methodenwahl.md](03b-begruendung-methodenwahl.md) | Schritt 3 – Begründung der Methodenwahl |
 | [04-interviewleitfaden-studierende.md](04-interviewleitfaden-studierende.md) | Schritt 4 – Interviewleitfaden (10 Fragen) inkl. kritischer Prüfung |
 | [05-annahmen.md](05-annahmen.md) | Identifizierte Annahmen (ASSUMPTION-001 – 007) |
-| [06-offene-fragen.md](06-offene-fragen.md) | Offene Fragen (QUESTION-001 – 010) |
+| [06-offene-fragen.md](06-offene-fragen.md) | Offene Fragen (QUESTION-001 – 015; 011–015 aus Aufgabe 03) |
 | [07-ai-challenge.md](07-ai-challenge.md) | AI Challenge „The Overconfident Intern“ – Analyse von REQ-001 bis REQ-003 |
 | [issues/](issues/) | Texte der GitHub-Issues + Skript zum Anlegen |
 
@@ -23,4 +23,4 @@ Planung der ersten Elicitation-Runde für den Study Buddy. Ziel ist **Problemver
 
 ## Status
 
-`PHASE: Discovery` · `ELICITATION: geplant, noch nicht durchgeführt` · `ANNAHMEN: 7 offen` · `FRAGEN: 10 offen`
+`PHASE: Discovery` · `ELICITATION: geplant, noch nicht durchgeführt` · `ANNAHMEN: 7 offen` · `FRAGEN: 15 offen`
