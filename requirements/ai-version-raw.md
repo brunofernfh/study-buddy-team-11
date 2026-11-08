@@ -1,152 +1,240 @@
 # KI Version (unverändert)
 
-> Rohausgabe der KI aus Runde 2, **unverändert** übernommen (Prompt, Modell und Rahmenbedingungen siehe [`human-vs-ai.md`](human-vs-ai.md#runde-2--ki)). Die Überschrift „REQ-001 bis REQ-015“ stammt von der KI selbst, obwohl nur fünf Anforderungen übergeben wurden.
+> Rohausgabe der KI aus Runde 2 mit dem **Suggested AI Prompt aus Moodle**, **unverändert** übernommen. Prompt, Modell und Rahmenbedingungen: [`human-vs-ai.md`](human-vs-ai.md#runde-2--ki).
 
 ---
 
-# Qualitätsanalyse der Anforderungsentwürfe für den Study Buddy (REQ-001 bis REQ-015)
+# Review der Anforderungsentwürfe für den Digital Study Buddy
 
-Als Maßstab dienen die üblichen Qualitätskriterien für Einzelanforderungen nach ISO/IEC/IEEE 29148 und IREB. Eine Anforderung soll eindeutig, prüfbar, notwendig, atomar, konsistent, realisierbar und lösungsneutral sein. Außerdem soll man nachvollziehen können, woher sie stammt. Wir sind noch in der Discovery-Phase. Viele Werte sind deshalb bewusst als **[TBD]** markiert. Das ist ehrlicher als eine scheinbare Präzision, die niemand bestätigt hat.
+**Bewertungsrahmen:**
+- **Inhalt:** Ist die Anforderung eindeutig, vollständig, korrekt, notwendig, prüfbar, machbar und lösungsneutral?
+- **Dokumentation:** Sind Form, Satzschablone, Verbindlichkeit, Struktur und Verständlichkeit in Ordnung?
+- **Abgestimmtheit:** Ist die Anforderung mit den relevanten Stakeholder:innen abgestimmt, frei von Konflikten und begründet?
+
+Platzhalter wie **[TBD: …]** zeigen fehlende Informationen. Diese Werte habe ich bewusst nicht erfunden.
 
 ---
 
-## REQ-001: Benachrichtigung bei Inaktivität
+## REQ-001
 
-**Ursprünglich:** *Das System muss Studierende automatisch benachrichtigen, wenn sie sieben Tage lang nicht im Online Campus aktiv waren.*
+> *Das System muss Studierende automatisch benachrichtigen, wenn sie sieben Tage lang nicht im Online Campus aktiv waren.*
 
 ### Qualitätsmängel
-| Kriterium | Mangel |
-|---|---|
-| **Eindeutigkeit** | „Nicht aktiv“ ist nicht definiert. Gemeint sein kann: kein Login, Login ohne Interaktion, keine bearbeitete Lernaktivität oder keine Abgabe. Auch „das System“ ist unklar: der Study Buddy oder der Online Campus? |
-| **Validierung / Herkunft** | Die „sieben Tage“ sind eine nicht belegte Annahme. Laut Brief ist ausdrücklich noch offen, was ein „längerer Zeitraum“ ist. Es fehlen Quelle und Begründung. |
-| **Vollständigkeit** | Es fehlen: Kanal (Campus-Hinweis, E-Mail, Push), Inhalt der Nachricht, Häufigkeit (einmalig oder wiederholt), Ausnahmen (Ferien, prüfungsfreie Zeit, Beurlaubung, Studienunterbrechung) und Zielgruppe (alle Studierenden oder nur aktiv Inskribierte?). |
-| **Konsistenz** | Steht im Konflikt mit REQ-007: Was passiert, wenn jemand Benachrichtigungen deaktiviert hat? |
-| **Angemessenheit / Akzeptanz** | Eine Nachricht nach dem Muster „Du warst 7 Tage nicht aktiv“ wirkt schnell wie Kontrolle. Der Brief will genau das vermeiden. Berufstätige Fernstudierende lernen oft in Blöcken, Inaktivität ist also nicht automatisch ein Problem. |
-| **Lösungsneutralität** | Die Anforderung legt eine konkrete Lösung fest (Inaktivitäts-Trigger). Das eigentliche Ziel bleibt unbenannt: Studierende sollen offene Aktivitäten und Fristen nicht aus den Augen verlieren. |
 
-### Verbesserte Version
-> **REQ-001 (Entwurf, zu validieren):** Wenn eine Studierende oder ein Studierender, die/der Lernhinweise aktiviert hat, innerhalb der Vorlesungszeit an **[X, TBD]** aufeinanderfolgenden Kalendertagen keine **Lernaktivität** (Definition siehe Glossar, **[TBD]**) im Online Campus durchgeführt hat, muss der Study Buddy dieser Person einen Hinweis im Online Campus anzeigen. Der Hinweis nennt die offenen Lernaktivitäten und die Abgabefristen der nächsten **[14, TBD]** Tage.
->
-> - Pro Lehrveranstaltung wird höchstens **ein** solcher Hinweis je **[Zeitraum, TBD]** angezeigt.
-> - In vorlesungsfreien Zeiten und bei gemeldeter Studienunterbrechung werden keine Inaktivitätshinweise erzeugt.
-> - Der Hinweis ist unterstützend formuliert. Er nennt keine Aktivitätsdauer und keinen Vergleich mit anderen Studierenden.
->
-> *Quelle:* Project Brief, Abschnitt 4. *Zu validieren mit:* Studierenden, Studiengangsleitungen, Datenschutz.
+**Inhalt**
+- **Unbegründeter Schwellenwert:** Die „sieben Tage“ sind nirgends belegt. Der Project Brief sagt ausdrücklich, dass der „längere Zeitraum“ noch nicht definiert ist. Der Wert ist also eine Annahme und keine abgeleitete Anforderung.
+- **„Aktiv“ ist nicht definiert:** Es kann Login, Seitenaufruf, Bearbeitung einer Lernaktivität oder Abgabe bedeuten. Ohne Definition lässt sich die Anforderung nicht prüfen.
+- **Unklare Datenbasis:** Laut Brief ist offen, ob Aktivitätsdaten verfügbar sind und ob sie verwendet werden dürfen.
+- **Fragliche Annahme:** Inaktivität wird ohne Beleg mit Unterstützungsbedarf gleichgesetzt. Bei einem Fernstudium mit berufstätigen Studierenden kann eine Pause geplant sein, z. B. in prüfungsfreien Zeiten, im Urlaub oder bei einer Beurlaubung. Das Risiko sind Fehlalarme.
+- **Unvollständig:** Es fehlen Kanal (E-Mail, Online Campus, Push), Inhalt, Häufigkeit (einmalig oder wiederholt), Ausnahmen (Semesterferien, Beurlaubung) und Zielgruppe (alle Studierenden oder nur bestimmte Studiengänge).
+- **Unklarer Zweck:** Es ist nicht gesagt, welches Ziel die Benachrichtigung verfolgt (Erinnerung, Hilfsangebot, Orientierung).
 
-**Abnahmekriterium:** Testperson A mit aktivierten Hinweisen und X Tagen ohne Lernaktivität in der Vorlesungszeit sieht beim nächsten Aufruf des Campus genau einen Hinweis mit ihren offenen Aktivitäten. Testperson B mit deaktivierten Hinweisen erhält keinen.
+**Dokumentation**
+- „Automatisch benachrichtigen“ beschreibt eine Systemaktivität, aber nicht, was die Studierenden davon haben.
+- Quelle, Begründung und Priorität fehlen.
+
+**Abgestimmtheit**
+- Die Anforderung ist mit keiner Stakeholdergruppe abgestimmt, weder mit Studierenden noch mit Datenschutz, Studiengangsleitung oder IT.
+- **Möglicher Konflikt mit dem Projektziel**, dass sich Studierende nicht kontrolliert oder überwacht fühlen sollen.
+- **Abhängigkeit zu REQ-007:** Wenn die Deaktivierung möglich ist, muss das Verhältnis zwischen beiden Anforderungen geklärt sein.
+
+### Verbesserungsvorschlag (vorläufig)
+
+> Das System muss Studierenden, die Erinnerungen bei Inaktivität nicht deaktiviert haben, eine Erinnerung über **[TBD: Kanal]** senden, wenn sie **[TBD: Zeitraum]** lang keine **[TBD: Definition von „Aktivität“, z. B. Bearbeitung einer Lernaktivität]** im Online Campus ausgeführt haben. Ausgenommen sind **[TBD: Ausnahmezeiträume, z. B. lehrveranstaltungsfreie Zeit, Beurlaubung]**.
+
+### Offene Punkte und notwendige Abstimmungen
+- Definition von „Aktivität“ und Festlegung des Schwellenwerts, abgestimmt mit Studierenden und Studiengangsleitungen
+- Verfügbarkeit der Aktivitätsdaten und Schnittstellen, abgestimmt mit der IT bzw. den Betreiber:innen des Online Campus
+- Zulässigkeit der Verarbeitung von Aktivitätsdaten zu diesem Zweck, abgestimmt mit dem Datenschutz
+- Wie Studierende diese Art von Hinweis wahrnehmen (hilfreich oder kontrollierend), zu erheben z. B. durch Befragung oder Interviews
+- Inhalt und Tonalität der Nachricht
+
+### Akzeptanzkriterien
+Akzeptanzkriterien sind erst sinnvoll, wenn Zeitraum und Aktivitätsdefinition geklärt sind. Danach ließe sich z. B. prüfen:
+- Nach X Tagen ohne definierte Aktivität wird genau eine Erinnerung ausgelöst.
+- In Ausnahmezeiträumen wird keine Erinnerung ausgelöst.
+- Bei deaktivierter Funktion wird keine Erinnerung ausgelöst.
+
+**Status: INVESTIGATE**
 
 ---
 
-## REQ-002: Allgemeine Qualitätsziele
+## REQ-002
 
-**Ursprünglich:** *Der Study Buddy muss schnell, intuitiv und besonders benutzerfreundlich sein.*
+> *Der Study Buddy muss schnell, intuitiv und besonders benutzerfreundlich sein.*
 
 ### Qualitätsmängel
-- **Nicht prüfbar:** „Schnell“, „intuitiv“ und „besonders benutzerfreundlich“ sind subjektive Begriffe ohne Messgröße. Kein Test kann sie bestanden oder nicht bestanden erklären.
-- **Nicht atomar:** Hier sind mindestens drei Qualitätsanforderungen vermischt: Performance, Erlernbarkeit und Benutzerfreundlichkeit.
-- **Unvollständig:** Es fehlen der Nutzungskontext (Endgerät, Erst- oder Dauernutzung), die Zielgruppe und die Barrierefreiheit, obwohl der Brief sie ausdrücklich fordert.
-- **„Besonders“** ist ein Steigerungswort ohne Bezugspunkt: besonders im Vergleich wozu?
 
-### Verbesserte Version (aufgeteilt)
-> **REQ-002a (Performance):** Der Study Buddy muss bei **[100, TBD]** gleichzeitigen Nutzer:innen **95 %** aller Ansichten innerhalb von **[2, TBD]** Sekunden vollständig darstellen. Gemessen wird ab dem Aufruf im Online Campus.
->
-> **REQ-002b (Erlernbarkeit):** Mindestens **[90 %, TBD]** der Testpersonen aus der Zielgruppe, ohne vorherige Einschulung, müssen im Usability-Test die Aufgabe „Offene Lernaktivitäten und nächste Frist finden“ innerhalb von **[2, TBD]** Minuten ohne Hilfe lösen.
->
-> **REQ-002c (Zufriedenheit):** Der Study Buddy muss im Usability-Test mit mindestens **[10, TBD]** Studierenden einen System Usability Scale (SUS) von mindestens **[75, TBD]** erreichen.
->
-> **REQ-002d (Barrierefreiheit):** Alle Oberflächen des Study Buddy müssen die Erfolgskriterien der Konformitätsstufe **AA der WCAG 2.2** erfüllen (vgl. EN 301 549).
->
-> **REQ-002e (Konsistenz):** Der Study Buddy muss die Bedienkonzepte und Gestaltungsrichtlinien des bestehenden Online Campus verwenden.
+**Inhalt**
+- **Mehrdeutig und nicht prüfbar:** „Schnell“, „intuitiv“ und „besonders benutzerfreundlich“ sind subjektive Begriffe ohne Messgröße.
+- **Nicht atomar:** Die Anforderung vermischt mindestens zwei Qualitätsmerkmale, Performance und Usability.
+- **Unvollständig:** Es ist nicht gesagt, welche Funktionen oder Interaktionen gemeint sind, für welche Nutzer:innengruppe die Anforderung gilt und in welchem Nutzungskontext (mobil, Desktop, assistive Technologien).
+- **Barrierefreiheit fehlt:** Der Brief nennt sie ausdrücklich als Thema. Sie wäre aber als eigene Anforderung zu erfassen.
+
+**Dokumentation**
+- Es handelt sich um eine Qualitätsanforderung, aber ohne Metrik, Messmethode und Zielwert.
+- „Besonders“ ist ein Steigerungswort ohne Bezugspunkt.
+
+**Abgestimmtheit**
+- Es gibt kein gemeinsames Verständnis davon, was „intuitiv“ für die heterogene Zielgruppe bedeutet.
+- Der Brief nennt lediglich das Ziel „einfach und ohne besondere technische Kenntnisse“ nutzbar.
+
+### Verbesserungsvorschlag
+Die Anforderung sollte in eigenständige, messbare Qualitätsanforderungen aufgeteilt werden:
+
+> **REQ-002a (Performance):** Das System muss **[TBD: konkrete Funktion, z. B. die Übersicht „Mein Lernfortschritt“]** innerhalb von **[TBD: Zeit]** Sekunden anzeigen, gemessen unter **[TBD: Lastbedingungen/Umgebung]**.
+
+> **REQ-002b (Gebrauchstauglichkeit):** Studierende ohne vorherige Einweisung müssen **[TBD: definierte Kernaufgaben]** in einem Usability-Test zu **[TBD: Erfolgsquote]** erfolgreich abschließen können.
+
+> **REQ-002c (Barrierefreiheit, separat zu erheben):** Das System muss **[TBD: anzuwendender Standard bzw. anzuwendende Konformitätsstufe]** erfüllen.
+
+### Offene Punkte und notwendige Abstimmungen
+- Welche Kernaufgaben sind für Studierende relevant? Das ist zu erheben, nicht anzunehmen.
+- Welche Performance-Ziele sind im Online Campus technisch erreichbar? Abstimmung mit der IT.
+- Welche Barrierefreiheitsvorgaben gelten für die Hochschule? Klärung mit den Verantwortlichen.
+- Welche Messmethoden sind geeignet, z. B. Usability-Test oder standardisierter Fragebogen wie SUS?
+
+### Akzeptanzkriterien
+Akzeptanzkriterien lassen sich erst nach Festlegung der Metriken formulieren. Fachlich naheliegend sind messbare Kriterien wie Antwortzeit, Aufgabenerfolgsquote im Usability-Test oder ein Fragebogenwert. Die konkreten Zielwerte müssen festgelegt werden.
+
+**Status: REWRITE**
 
 ---
 
-## REQ-007: Benachrichtigungen deaktivieren
+## REQ-007
 
-**Ursprünglich:** *Studierende müssen sämtliche Benachrichtigungen jederzeit deaktivieren können.*
+> *Studierende müssen sämtliche Benachrichtigungen jederzeit deaktivieren können.*
 
 ### Qualitätsmängel
-- **Falsche Perspektive:** Die Pflicht liegt formal bei den Studierenden („müssen“). Verpflichtet werden soll aber das System, eine Möglichkeit anzubieten.
-- **Mehrdeutiger Umfang:** Unklar ist, was „sämtliche“ umfasst. Nur Hinweise des Study Buddy oder auch verpflichtende Mitteilungen der Hochschule (Prüfungsanmeldung, administrative Fristen)? Letztere dürfen Studierende wahrscheinlich nicht abschalten.
-- **Zu grob:** Es gibt nur „alles oder nichts“. Sinnvoller wäre eine Steuerung je Kategorie (z. B. Fristen ja, Inaktivitätshinweise nein).
-- **Unvollständig:** Es fehlen die Reaktivierung, der Zeitpunkt, ab dem die Einstellung wirkt, und der Standardzustand (Opt-in oder Opt-out).
-- **Verwechslungsgefahr:** Wer Benachrichtigungen abschaltet, hat damit nicht automatisch der Datenverarbeitung widersprochen. Das ist datenschutzrechtlich ein eigener Sachverhalt und braucht eine eigene Anforderung.
-- **Konsistenz:** Das Zusammenspiel mit REQ-001 und REQ-015 ist nicht geklärt.
-- **„Jederzeit“** ist unpräzise. Gemeint ist vermutlich: ohne Fristen und ohne Antrag, selbst in den Einstellungen.
 
-### Verbesserte Version (aufgeteilt)
-> **REQ-007a:** Der Study Buddy muss Studierenden die Möglichkeit bieten, Benachrichtigungen des Study Buddy **je Kategorie** (z. B. Fristerinnerungen, Inaktivitätshinweise, Empfehlungen; Liste **[TBD]**) selbstständig in den persönlichen Einstellungen zu deaktivieren und wieder zu aktivieren.
->
-> **REQ-007b:** Der Study Buddy muss Studierenden die Möglichkeit bieten, alle Benachrichtigungen des Study Buddy mit **einer** Aktion gemeinsam zu deaktivieren.
->
-> **REQ-007c:** Eine geänderte Benachrichtigungseinstellung muss spätestens **[5 Minuten, TBD]** nach dem Speichern wirksam sein.
->
-> **REQ-007d:** Der Standardzustand je Kategorie ist **[TBD, mit Datenschutz abzustimmen]**.
->
-> *Abgrenzung:* Verpflichtende Mitteilungen der Studienadministration gehören nicht zum Study Buddy und sind davon nicht betroffen. Der Widerspruch gegen die Datenverarbeitung wird in einer eigenen Anforderung geregelt (**REQ-0xx, TBD**).
+**Inhalt**
+- **„Sämtliche“ ist zu absolut:** Es ist ungeklärt, ob es Benachrichtigungen gibt, die nicht deaktivierbar sein dürfen, z. B. organisatorisch oder rechtlich verbindliche Mitteilungen. Unklar ist auch, ob die Anforderung nur Study-Buddy-Benachrichtigungen betrifft oder auch bestehende Online-Campus-Benachrichtigungen.
+- **Granularität offen:** Nur alles oder nichts, einzeln pro Benachrichtigungstyp, pro Kanal oder pro Lehrveranstaltung?
+- **Folgen unklar:** Werden die zugrunde liegenden Daten weiter verarbeitet, wenn Benachrichtigungen deaktiviert sind? Deaktivieren und Datenverarbeitung beenden sind zwei verschiedene Dinge.
+- **Unvollständig:** Wiederaktivierung, Voreinstellung (opt-in oder opt-out) und Ort der Einstellung fehlen.
+- **Positiv:** Die Anforderung ist nutzer:innenzentriert und unterstützt das Ziel, nicht als Kontrolle wahrgenommen zu werden.
+
+**Dokumentation**
+- „Jederzeit“ ist grundsätzlich verständlich, sollte aber präzisiert werden, z. B. „ohne Kontaktaufnahme mit der Hochschule, über die Einstellungen“.
+- Begründung und Quelle fehlen.
+
+**Abgestimmtheit**
+- Der Brief nennt ausdrücklich als offen, „ob bestimmte Funktionen deaktiviert werden können“. Die Anforderung nimmt also eine Entscheidung vorweg, die noch nicht abgestimmt ist.
+- **Zielkonflikt** mit „frühzeitiges Erkennen von Unterstützungsbedarf“ und mit REQ-001. Dieser Konflikt ist mit Studiengangsleitungen, Studierenden und Datenschutz aufzulösen.
+
+### Verbesserungsvorschlag (vorläufig)
+
+> Das System muss Studierenden die Möglichkeit bieten, jede vom Study Buddy erzeugte Benachrichtigungsart **[TBD: Liste der Benachrichtigungsarten]** einzeln über die persönlichen Einstellungen zu deaktivieren und wieder zu aktivieren, ohne dafür Dritte kontaktieren zu müssen. **[TBD: ob und welche Benachrichtigungen davon ausgenommen sind, mit Begründung]**
+
+### Offene Punkte und notwendige Abstimmungen
+- Gibt es nicht deaktivierbare Benachrichtigungen? Klärung mit Studienadministration und Datenschutz.
+- Voreinstellung opt-in oder opt-out? Klärung mit Datenschutz und Studierenden.
+- Führt eine Deaktivierung auch zur Einstellung der zugehörigen Datenverarbeitung? Das wäre gegebenenfalls eine eigene Anforderung.
+- Abgrenzung zu bestehenden Benachrichtigungen des Online Campus, Klärung mit der IT.
+
+### Akzeptanzkriterien
+Diese sind fachlich begründbar, sobald die Benachrichtigungsarten feststehen:
+- Nach dem Deaktivieren einer Benachrichtigungsart erhält die Person keine Benachrichtigung dieser Art mehr.
+- Die Einstellung lässt sich ohne Unterstützung Dritter ändern.
+- Die Einstellung bleibt über Sitzungen hinweg erhalten.
+- Eine Wiederaktivierung ist jederzeit möglich.
+
+**Status: INVESTIGATE**
 
 ---
 
-## REQ-011: Separates Benutzerkonto
+## REQ-011
 
-**Ursprünglich:** *Studierende müssen für den Study Buddy ein separates Benutzerkonto mit eigenem Passwort erstellen.*
+> *Studierende müssen für den Study Buddy ein separates Benutzerkonto mit eigenem Passwort erstellen.*
 
 ### Qualitätsmängel
-- **Lösung statt Anforderung:** Es wird eine Implementierung vorgegeben (eigenes Konto mit Passwort), aber kein Bedarf beschrieben. Der eigentliche Bedarf ist ein sicherer, eindeutig zugeordneter Zugang.
-- **Widerspricht den Rahmenbedingungen:** Laut Brief soll der Study Buddy in den Online Campus integriert werden, und eine eigenständige Anwendung soll vermieden werden.
-- **Nicht notwendig, eher schädlich:** Ein zusätzliches Passwort bedeutet zusätzlichen Aufwand für die Studierenden. Das senkt die Nutzung und verfehlt das Ziel „einfach, ohne technische Kenntnisse“.
-- **Sicherheit und Datenschutz:** Ein eigenes Passwort-Management erweitert die Angriffsfläche, fördert die Wiederverwendung von Passwörtern und doppelt Identitätsdaten. Das widerspricht der Datenminimierung.
-- **Falsche Perspektive:** Auch hier liegt die Pflicht bei den Studierenden statt beim System.
 
-### Verbesserte Version
-> **REQ-011:** Der Study Buddy muss für im Online Campus angemeldete Studierende **ohne zusätzliche Anmeldung oder Registrierung** nutzbar sein. Dafür wird die bestehende Authentifizierung des Online Campus verwendet.
->
-> **REQ-011a (Randbedingung):** Der Study Buddy darf keine eigenen Zugangsdaten (Benutzernamen, Passwörter) speichern oder verwalten.
->
-> *Zu klären mit:* IT / Betreiber:innen des Online Campus (verfügbare Schnittstellen, z. B. SSO).
+**Inhalt**
+- **Vorweggenommene Lösung:** Die Anforderung legt eine technische Umsetzung fest, statt einen Bedarf zu beschreiben. Der eigentliche Bedarf ist vermutlich eine sichere Authentifizierung bzw. ein Zugriffsschutz.
+- **Widerspruch zu den Rahmenbedingungen:** Der Brief verlangt eine Integration in den bestehenden Online Campus und will eine eigenständige Anwendung möglichst vermeiden. Ein separates Konto steht dem direkt entgegen.
+- **Widerspruch zum Nutzungsziel:** Der Study Buddy soll „einfach und ohne besondere technische Kenntnisse“ nutzbar sein. Ein zusätzliches Konto ist eine zusätzliche Hürde.
+- **Fraglicher Nutzen:** Die Anforderung bietet Studierenden keinen erkennbaren Vorteil und schafft zusätzliche Sicherheitsrisiken (weiteres Passwort, eigene Kontoverwaltung).
 
-**Abnahmekriterium:** Eine Testperson, die im Online Campus angemeldet ist, öffnet den Study Buddy und sieht ihre persönlichen Daten, ohne erneut Zugangsdaten einzugeben.
+**Dokumentation**
+- Die Anforderung ist formal klar formuliert. Begründung und Quelle fehlen jedoch vollständig.
+
+**Abgestimmtheit**
+- Die Anforderung ist mit der IT nicht abgestimmt und steht im Konflikt mit dokumentierten Projektrahmenbedingungen.
+- Woher sie stammt, ist nicht nachvollziehbar.
+
+### Verbesserungsvorschlag
+Die Anforderung sollte in dieser Form verworfen und gegebenenfalls durch eine lösungsneutrale Anforderung ersetzt werden:
+
+> Das System muss sicherstellen, dass ausschließlich authentifizierte Studierende Zugriff auf ihre eigenen Study-Buddy-Informationen erhalten. **[TBD: ob die bestehende Authentifizierung des Online Campus genutzt werden kann, Abstimmung mit der IT]**
+
+### Offene Punkte und notwendige Abstimmungen
+- Welche Authentifizierungsmechanismen bietet der Online Campus? Klärung mit der IT.
+- Welche Sicherheitsanforderungen gelten? Klärung mit der Informationssicherheit.
+- Gibt es einen fachlichen oder technischen Grund für ein separates Konto, der bisher nicht dokumentiert ist? Klärung mit der Quelle der Anforderung.
+
+### Akzeptanzkriterien
+Für die ursprüngliche Anforderung sind keine sinnvoll. Für die Ersatzanforderung erst nach Klärung der Authentifizierungslösung.
+
+**Status: RECONSIDER**
 
 ---
 
-## REQ-015: KI entscheidet über Betreuungsbedarf
+## REQ-015
 
-**Ursprünglich:** *Ein KI-Modell muss anhand der Nutzungsdaten automatisch entscheiden, welche Studierenden zusätzliche Betreuung benötigen.*
-
-Das ist der kritischste der fünf Entwürfe.
+> *Ein KI-Modell muss anhand der Nutzungsdaten automatisch entscheiden, welche Studierenden zusätzliche Betreuung benötigen.*
 
 ### Qualitätsmängel
-- **Lösung vorweggenommen:** „Ein KI-Modell“ ist eine Technologieentscheidung. Laut Brief soll erst *geprüft* werden, ob KI überhaupt sinnvoll ist. Transparente, regelbasierte Kriterien könnten ausreichen und wären besser erklärbar.
-- **Nicht eindeutig:** Es ist offen, welche „Nutzungsdaten“ gemeint sind, was „zusätzliche Betreuung“ ist und wer sie leistet.
-- **Nicht prüfbar:** Es fehlen Gütekriterien. Wann ist eine „Entscheidung“ richtig? Welche Raten an Fehlalarmen und übersehenen Fällen sind akzeptabel?
-- **Rechtliche Risiken:**
-  - Vollautomatisierte Entscheidungen mit erheblicher Wirkung auf Personen berühren **Art. 22 DSGVO**.
-  - KI-Systeme im Bildungsbereich können nach dem **EU AI Act (Anhang III, Bildung)** als Hochrisiko-Systeme gelten. Das hätte erhebliche Pflichten zur Folge (Risikomanagement, menschliche Aufsicht, Dokumentation). Eine rechtliche Prüfung ist notwendig.
-  - Rechtsgrundlage, Zweckbindung und Transparenz der Datenverarbeitung sind nicht geklärt.
-- **Kein Mensch in der Entscheidung:** „Automatisch entscheiden“ schließt eine menschliche Prüfung aus. Laut Brief ist aber genau offen, welche Entscheidungen *nicht* automatisiert werden dürfen.
-- **Gefahr der Überwachung:** Wenn Studierende im Hintergrund eingestuft werden, entsteht genau die Kontrolle, die das Projekt vermeiden will. Dazu kommen Risiken durch Verzerrungen (Bias), z. B. ein Nachteil für Berufstätige mit unregelmäßigen Lernzeiten.
-- **Fehlende Selbstbestimmung:** Die Studierenden werden nicht einbezogen. Es gibt weder Einwilligung noch Einsicht oder Widerspruch.
-- **Konsistenz:** Das Verhältnis zu REQ-007 ist unklar. Kann man sich der Einstufung entziehen?
 
-### Verbesserte Version (aufgeteilt, Fokus Selbstbestimmung)
-> **REQ-015a:** Der Study Buddy muss Studierenden, die der Auswertung ihrer Lernaktivitätsdaten zugestimmt haben, einen Hinweis auf passende Unterstützungsangebote anzeigen, wenn **dokumentierte Indikatoren** erfüllt sind (z. B. mehrere versäumte Abgabefristen in einer Lehrveranstaltung; Kriterien **[TBD]** mit Studiengangsleitungen, Lehrenden und Datenschutz).
->
-> **REQ-015b:** Der Study Buddy muss Studierenden in verständlicher Sprache anzeigen, welche Daten und Kriterien zu einem Unterstützungshinweis geführt haben.
->
-> **REQ-015c:** Der Study Buddy darf Informationen über einen möglichen Unterstützungsbedarf nur dann an eine Betreuungsperson weitergeben, wenn die betroffene Person im Einzelfall ausdrücklich zugestimmt hat.
->
-> **REQ-015d (Randbedingung):** Entscheidungen über konkrete Betreuungsmaßnahmen dürfen nicht automatisiert getroffen werden. Sie werden von einer zuständigen Person **[Rolle TBD]** getroffen.
->
-> *Offen / zu prüfen:* Ob und wofür KI eingesetzt wird (z. B. nur zur Formulierung von Hinweisen), muss separat bewertet werden. Dazu gehört eine rechtliche Prüfung nach DSGVO und AI Act. Eine Datenschutz-Folgenabschätzung ist voraussichtlich erforderlich.
+**Inhalt**
+- **Vorweggenommene Lösung:** „KI-Modell“ ist eine Technologieentscheidung. Der Brief sagt ausdrücklich, dass erst geprüft werden soll, ob KI sinnvoll eingesetzt werden kann.
+- **Vorweggenommene Grundsatzentscheidung:** Laut Brief ist offen, welche Entscheidungen automatisiert getroffen werden dürfen und wann eine menschliche Person eingebunden werden muss. Die Anforderung entscheidet beides vorab, und zwar ohne Menschen in der Entscheidung.
+- **Undefinierte Begriffe:**
+  - „Nutzungsdaten“: welche Daten konkret?
+  - „Zusätzliche Betreuung“: welche Form, durch wen?
+  - „Benötigen“: nach welchen Kriterien?
+- **Nicht prüfbar:** Ohne Kriterien für „Betreuungsbedarf“ lässt sich weder Korrektheit noch Qualität der Entscheidung prüfen.
+- **Hohes Risikopotenzial:** Fehlklassifikationen, Stigmatisierung, mögliche Verzerrungen (Bias) gegenüber bestimmten Gruppen mit anderem Lernverhalten und fehlende Nachvollziehbarkeit für Studierende.
+- **Starker Widerspruch zum Projektziel**, nicht als Überwachung oder Kontrolle wahrgenommen zu werden.
+
+**Dokumentation**
+- Akteur ist „ein KI-Modell“ und nicht das System. Die Anforderung ist aus Technologiesicht formuliert statt aus Sicht des Bedarfs.
+- Zweck, Quelle und Begründung fehlen.
+
+**Abgestimmtheit**
+- Die Anforderung ist mit keiner der relevanten Gruppen abgestimmt: Datenschutz, Informationssicherheit, Studierende, Studiengangsleitung, Hochschulleitung.
+- **Rechtliche Prüfung erforderlich:** Automatisierte Einzelentscheidungen über Personen und der KI-Einsatz im Bildungskontext können datenschutzrechtlich (z. B. DSGVO-Regelungen zu automatisierten Entscheidungen) und KI-regulatorisch relevant sein. Ob und welche Vorgaben hier greifen, ist nicht geklärt und muss vom Datenschutz bzw. der Rechtsabteilung bewertet werden. Eine Zulässigkeit darf nicht angenommen werden.
+
+### Verbesserungsvorschlag
+Die Anforderung sollte in dieser Form verworfen werden. Der dahinterliegende Bedarf („frühzeitiges Erkennen möglichen Unterstützungsbedarfs“) ist aus dem Brief ableitbar und sollte lösungsneutral neu erhoben werden. Eine mögliche Richtung, vorbehaltlich der Abstimmung:
+
+> Das System soll Studierenden auf Basis von **[TBD: abgestimmte, zulässige Datenkategorien]** und **[TBD: definierte, transparente Kriterien]** Hinweise auf verfügbare Unterstützungsangebote anzeigen. Ob und unter welchen Bedingungen eine Ansprechperson der Hochschule informiert wird, ist **[TBD: Abstimmung mit Datenschutz, Studiengangsleitung, Studierenden]**. Entscheidungen über die Zuweisung von Betreuung dürfen **[TBD: ob ausschließlich durch Menschen]** getroffen werden.
+
+### Offene Punkte und notwendige Abstimmungen
+- Was bedeutet „Unterstützungsbedarf“ fachlich? Erhebung mit Studierenden, Lehrenden und Studiengangsleitung.
+- Welche Daten dürfen zu diesem Zweck verarbeitet werden? Klärung mit dem Datenschutz.
+- Ist KI überhaupt erforderlich, oder reichen transparente regelbasierte Kriterien? Das gehört in die Lösungsphase, nicht in die Anforderung.
+- Welche Rolle hat der Mensch (Human-in-the-Loop) und wer erhält Einsicht in welche Informationen?
+- Wissen Studierende von der Verarbeitung, haben sie Widerspruchsmöglichkeiten, und können sie die Grundlage eines Hinweises nachvollziehen?
+
+### Akzeptanzkriterien
+Derzeit sind keine fachlich begründbaren Akzeptanzkriterien möglich, weil Kriterien, Datenbasis und Entscheidungsbefugnis vollständig ungeklärt sind.
+
+**Status: RECONSIDER**
 
 ---
 
-## Übergreifende Erkenntnisse
+## Gesamtübersicht
 
-1. **Konflikte, die geklärt werden müssen:**
-   - REQ-001 gegen REQ-007: Hat das Deaktivieren Vorrang vor Inaktivitätshinweisen?
-   - REQ-015 gegen Datenschutz und Akzeptanz: Wo endet Unterstützung, wo beginnt Profiling?
-   - REQ-011 gegen die technischen Rahmenbedingungen (Integration in den Online Campus).
-2. **Wiederkehrende Muster:** Lösungen werden vorweggenommen (REQ-011, REQ-015, teilweise REQ-001), Begriffe sind vage (REQ-002), und die Pflicht liegt bei den Nutzer:innen statt beim System (REQ-007, REQ-011).
-3. **Glossar anlegen:** „Lernaktivität“, „aktiv“, „Lernfortschritt“, „Unterstützungsbedarf“ und „Benachrichtigung“ (inklusive Kategorien) müssen verbindlich definiert werden.
-4. **Attribute ergänzen:** Jede Anforderung sollte Quelle, Begründung, verantwortliche Stakeholder:innen, Priorität, Status (*Entwurf / validiert*) und Abnahmekriterien erhalten.
-5. **Annahmen kennzeichnen:** Werte wie „7 Tage“ sollten als **Annahme** im Backlog stehen und mit Studierenden validiert werden, z. B. über Interviews oder eine Befragung zu Lernrhythmen.
+| ID | Hauptmangel | Status |
+|---|---|---|
+| REQ-001 | Unbegründeter Schwellenwert, „Aktivität“ undefiniert, Datenbasis und Zulässigkeit unklar | **INVESTIGATE** |
+| REQ-002 | Vage, nicht messbar, nicht atomar | **REWRITE** |
+| REQ-007 | „Sämtliche“ zu absolut, Granularität offen, Zielkonflikt mit REQ-001 | **INVESTIGATE** |
+| REQ-011 | Vorweggenommene Lösung, widerspricht der Integrationsvorgabe des Briefs | **RECONSIDER** |
+| REQ-015 | Technologievorgabe, automatisierte Personenentscheidung ohne Kriterien und Abstimmung, rechtlich ungeprüft | **RECONSIDER** |
+
+## Übergreifende Feststellungen
+1. **Fehlende Rückverfolgbarkeit:** Keine Anforderung hat Quelle, Begründung oder Priorität. Diese Attribute sollten für alle Anforderungen ergänzt werden.
+2. **Konflikt zwischen Unterstützung und Selbstbestimmung:** REQ-001 und REQ-015 auf der einen Seite und REQ-007 auf der anderen stehen in einem Spannungsfeld. Dieses muss explizit mit den Stakeholder:innen aufgelöst und dokumentiert werden.
+3. **Datenklärung als Voraussetzung:** REQ-001 und REQ-015 setzen eine Klärung von Datenverfügbarkeit und Zulässigkeit voraus. Diese sollte vorgezogen werden.
+4. **Fehlende Anforderungen:** Transparenz (welche Daten wofür verwendet werden), Barrierefreiheit und Speicherdauer werden im Brief als Themen genannt, sind aber noch nicht als Anforderungen erfasst.
